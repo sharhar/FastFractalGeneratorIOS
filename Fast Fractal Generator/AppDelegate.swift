@@ -8,6 +8,7 @@
 
 import UIKit;
 import GLKit;
+import CoreGraphics;
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GLKViewDelegate, GLKViewControllerDelegate {
@@ -58,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GLKViewDelegate, GLKViewC
         
         EAGLContext.setCurrent(context);
         
-        frac.setup();
+        frac.setup(size: CGPoint(x: window!.bounds.width, y: window!.bounds.height));
         
         return true
     }

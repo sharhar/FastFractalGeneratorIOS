@@ -13,6 +13,8 @@
 		C3566F0C1EFFE4ED0001BE3C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3566F0B1EFFE4ED0001BE3C /* GLKit.framework */; };
 		C3566F0E1EFFE4F40001BE3C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3566F0D1EFFE4F40001BE3C /* OpenGLES.framework */; };
 		C3566F101EFFEB360001BE3C /* Fractal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3566F0F1EFFEB360001BE3C /* Fractal.swift */; };
+		C3BE3B461F012A4000753CA2 /* vert.glsl in Resources */ = {isa = PBXBuildFile; fileRef = C3BE3B451F012A4000753CA2 /* vert.glsl */; };
+		C3BE3B481F012CC400753CA2 /* frag.glsl in Resources */ = {isa = PBXBuildFile; fileRef = C3BE3B471F012CC400753CA2 /* frag.glsl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		C3566F0B1EFFE4ED0001BE3C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		C3566F0D1EFFE4F40001BE3C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		C3566F0F1EFFEB360001BE3C /* Fractal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fractal.swift; sourceTree = "<group>"; };
+		C3BE3B451F012A4000753CA2 /* vert.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vert.glsl; sourceTree = "<group>"; };
+		C3BE3B471F012CC400753CA2 /* frag.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = frag.glsl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 		C3566ED01EFFE48F0001BE3C = {
 			isa = PBXGroup;
 			children = (
+				C3BE3B471F012CC400753CA2 /* frag.glsl */,
+				C3BE3B451F012A4000753CA2 /* vert.glsl */,
 				C3566EDB1EFFE48F0001BE3C /* Fast Fractal Generator */,
 				C3566EDA1EFFE48F0001BE3C /* Products */,
 				C3566F0A1EFFE4ED0001BE3C /* Frameworks */,
@@ -223,6 +229,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3566EE71EFFE48F0001BE3C /* LaunchScreen.storyboard in Resources */,
+				C3BE3B481F012CC400753CA2 /* frag.glsl in Resources */,
+				C3BE3B461F012A4000753CA2 /* vert.glsl in Resources */,
 				C3566EE41EFFE48F0001BE3C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
