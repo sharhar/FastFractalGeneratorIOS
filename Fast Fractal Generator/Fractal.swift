@@ -27,29 +27,27 @@ class Fractal {
     var scLoc: GLint = 0;
     var offLoc: GLint = 0;
     
-    func getShaderSourcePointer(str: String) -> UnsafePointer<UnsafePointer<GLchar>?> {
-        let nsVertSource: NSString = NSString(string: str);
-        
-        let pVertShader: UnsafeMutablePointer<UnsafePointer<GLchar>?> = UnsafeMutablePointer<UnsafePointer<GLchar>?>.allocate(capacity: 1);
-        pVertShader.pointee? = nsVertSource.utf8String!;
-        
-        return UnsafePointer<UnsafePointer<GLchar>?>.init(pVertShader);
-    }
+    var startTime: TimeInterval = 0;
+    var frames: UInt32 = 0;
+    var FPS: UInt32 = 0;
     
     func readFile(name: String, type: String) -> String {
         let path = Bundle.main.path(forResource: name, ofType: type);
         
         do {
+            print("Reading shader");
             return try String(contentsOfFile: (path)!);
         } catch {
             print("Error reading file!");
         }
-        
+        print("Hello");
         return "";
     }
     
     func setup(size: CGPoint) {
         glClearColor(0.2, 0.3, 0.8, 1.0);
+        
+        startTime = Date().timeIntervalSinceReferenceDate;
         
         let verts: [Float] = [
             -1, -1,
@@ -61,7 +59,7 @@ class Fractal {
             -1,  1
         ];
         
-        let vboa: UnsafeMutablePointer<GLuint> = UnsafeMutablePointer<GLuint>.allocate(capacity: 1);
+        let vboa: UnsafeMutablePointer<GLuint> = UnsafeMutablePointer<GLuint>.allocate(capacity: 2);
         glGenBuffers(1, vboa);
         vbo = vboa.pointee;
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vbo);
@@ -69,35 +67,62 @@ class Fractal {
         
         let vertShader: GLuint = glCreateShader(GLenum(GL_VERTEX_SHADER));
         
-        glShaderSource(vertShader, 1, getShaderSourcePointer(str: readFile(name: "vert", type: "glsl")), nil);
+        let vertSource = readFile(name: "vert", type: "glsl");
+        let nsVertSource = NSString(string: vertSource);
+        var cVertSource = nsVertSource.utf8String;
         
+        glShaderSource(vertShader, 1, &cVertSource, nil);
         glCompileShader(vertShader);
         
+        let pStatus: UnsafeMutablePointer<GLint> = UnsafeMutablePointer<GLint>.allocate(capacity: 1);
+        glGetShaderiv(vertShader, GLenum(GL_COMPILE_STATUS), pStatus);
+        var status: GLint = pStatus.pointee;
+        
+        if(status==0){
+            print("Vertex Error");
+            
+            glGetShaderiv(vertShader, GLenum(GL_INFO_LOG_LENGTH), pStatus);
+            status = pStatus.pointee;
+            
+            if(status > 1) {
+                let pLog: UnsafeMutablePointer<GLchar> = UnsafeMutablePointer<GLchar>.allocate(capacity: Int(status));
+                glGetShaderInfoLog(vertShader, GLsizei(status), nil, pLog);
+                
+                let log: String = String.init(cString: UnsafePointer<CChar>.init(pLog));
+                
+                print(log);
+            }
+            
+            glDeleteShader(vertShader);
+        }
+        
         let fragShader: GLuint = glCreateShader(GLenum(GL_FRAGMENT_SHADER));
-        glShaderSource(fragShader, 1, getShaderSourcePointer(str: readFile(name: "frag", type: "glsl")), nil);
+        
+        let fragSource = readFile(name: "frag", type: "glsl");
+        let nsFragSource = NSString(string: fragSource);
+        var cFragSource = nsFragSource.utf8String;
+        
+        glShaderSource(fragShader, 1, &cFragSource, nil);
         glCompileShader(fragShader);
         
-        let pStatus: UnsafeMutablePointer<GLint> = UnsafeMutablePointer<GLint>.allocate(capacity: 1);
         glGetShaderiv(fragShader, GLenum(GL_COMPILE_STATUS), pStatus);
-        let status: GLint = pStatus.pointee;
         
         if(status==0){
             print("Fragment Error");
             
-            /*
-            glGetShaderiv(vertShader,GL_INFO_LOG_LENGTH, &status);
+            glGetShaderiv(fragShader, GLenum(GL_INFO_LOG_LENGTH), pStatus);
+            status = pStatus.pointee;
             
-            if (status>1){
-                int length;
-                glGetShaderInfoLog(vertShader, 0, &length, NULL);
-                char* logInfo = malloc(sizeof(char) * length);
-                glGetShaderInfoLog(vertShader, sizeof(char) * length, NULL, logInfo);
+            if(status > 1) {
+                let pLog: UnsafeMutablePointer<GLchar> = UnsafeMutablePointer<GLchar>.allocate(capacity: Int(status));
+                glGetShaderInfoLog(fragShader, GLsizei(status), nil, pLog);
                 
-                log_c(logInfo);
+                let log: String = String.init(cString: UnsafePointer<CChar>.init(pLog));
+                
+                print(log);
             }
             
-            glDeleteShader(vertShader);
- */
+            glDeleteShader(fragShader);
         }
         
         shader = glCreateProgram();
@@ -137,7 +162,7 @@ class Fractal {
         glUseProgram(shader);
         
         glUniform2f(aspectLoc, aspectX, aspectY);
-        glUniform1f(scaleLoc, 1);
+        glUniform1f(scaleLoc, 8);
         glUniform2f(windowLoc, 0, 0);
         
         glUniform2f(cLoc, 0, 0);
@@ -163,6 +188,15 @@ class Fractal {
         glVertexAttribPointer(0, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil);
         
         glDrawArrays(GLenum(GL_TRIANGLES), 0, 6);
+        
+        frames += 1;
+        let currentTime: TimeInterval = Date().timeIntervalSinceReferenceDate;
+        if(currentTime - startTime >= 1) {
+            FPS = frames;
+            frames = 0;
+            print("\(FPS)\tExtra: \(currentTime - startTime - 1)");
+            startTime = currentTime;
+        }
     }
     
 }

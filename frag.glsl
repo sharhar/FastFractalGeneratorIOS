@@ -139,6 +139,7 @@ vec2 ds_mul (vec2 dsa, vec2 dsb) {
 }
 
 void main() {
+    
     vec2 tpx = ds_mul(vec2(ptp.x, ptp.z), sc);
     vec2 tpy = ds_mul(vec2(ptp.y, ptp.w), sc);
     
@@ -151,7 +152,10 @@ void main() {
     tpx = ds_sub(tpx, vec2(2.0, 0.0));
     tpy = ds_sub(tpy, vec2(2.0, 0.0));
     
-    vec4 uv = vec4(tpx.x, tpy.x, tpx.y, tpy.y);
+    
+    //vec2 tp = (vec2(ptp.xy) * sc.x + vec2(off.xy)) * 4.0 - 2.0;
+    
+    vec4 uv = vec4(tpx.x, tpy.x, tpx.y, tpy.y);//vec4(tp.x, tp.y, 0.0, 0.0);
     
     vec4 z = vec4(c.x, c.y, 0.0, 0.0);
     int iteration = -1;
@@ -167,6 +171,15 @@ void main() {
     vec2 zy = vec2(0.0);
     
     for (int i = 0; i < maxIteration; i++) {
+        
+        /*
+        x2.x = tz.x * tz.x;
+        y2.x = tz.y * tz.y;
+        
+        z.x = x2.x - y2.x + uv.x;
+        z.y = tz.x * tz.y * 2.0 + uv.y;
+        */
+        
         //x2 = tz.xz * tz.xz
         cona = tz.x * split;
         a1 = cona - (cona - tz.x);
@@ -301,11 +314,4 @@ void main() {
             gl_FragColor = vec4(colorOutside * colorFactor, 1.0);
         }
     }
-    
-    //gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
 }
-
-//void main() {
-//    vec2 tp = (vec2(ptp.xy) * sc.x + vec2(off.xy)) * 4.0 - 2.0;
-//    gl_FragColor = vec4(tp.xy, 0.0, 1.0);
-//}

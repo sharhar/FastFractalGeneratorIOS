@@ -53,6 +53,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GLKViewDelegate, GLKViewC
         constraint = NSLayoutConstraint.init(item: button, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.greaterThanOrEqual, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1.0, constant: 20.0);
         view.addConstraint(constraint);
         
+        let label: UILabel = UILabel.init(frame: CGRect(x: 100, y: 300, width: 100, height: 100));
+        label.text = "Hello world";
+        label.textColor = UIColor.white;
+        
+        window?.addSubview(label);
+        
         window?.rootViewController = controller;
         window?.backgroundColor = UIColor.white;
         window?.makeKeyAndVisible();
