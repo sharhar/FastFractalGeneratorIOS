@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAA5AA161F1AC6B9001615DF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5AA151F1AC6B9001615DF /* MainViewController.swift */; };
 		C3566EDD1EFFE48F0001BE3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3566EDC1EFFE48F0001BE3C /* AppDelegate.swift */; };
 		C3566EE41EFFE48F0001BE3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3566EE31EFFE48F0001BE3C /* Assets.xcassets */; };
 		C3566EE71EFFE48F0001BE3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3566EE51EFFE48F0001BE3C /* LaunchScreen.storyboard */; };
@@ -17,31 +18,13 @@
 		C3BE3B481F012CC400753CA2 /* frag.glsl in Resources */ = {isa = PBXBuildFile; fileRef = C3BE3B471F012CC400753CA2 /* frag.glsl */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C3566EEE1EFFE48F0001BE3C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C3566ED11EFFE48F0001BE3C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C3566ED81EFFE48F0001BE3C;
-			remoteInfo = "Fast Fractal Generator";
-		};
-		C3566EF91EFFE4900001BE3C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C3566ED11EFFE48F0001BE3C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C3566ED81EFFE48F0001BE3C;
-			remoteInfo = "Fast Fractal Generator";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		BAA5AA151F1AC6B9001615DF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C3566ED91EFFE48F0001BE3C /* Fast Fractal Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast Fractal Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3566EDC1EFFE48F0001BE3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3566EE31EFFE48F0001BE3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3566EE61EFFE48F0001BE3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3566EE81EFFE48F0001BE3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C3566EED1EFFE48F0001BE3C /* Fast Fractal GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fast Fractal GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3566EF81EFFE4900001BE3C /* Fast Fractal GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fast Fractal GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3566F0B1EFFE4ED0001BE3C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		C3566F0D1EFFE4F40001BE3C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		C3566F0F1EFFEB360001BE3C /* Fractal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fractal.swift; sourceTree = "<group>"; };
@@ -56,20 +39,6 @@
 			files = (
 				C3566F0E1EFFE4F40001BE3C /* OpenGLES.framework in Frameworks */,
 				C3566F0C1EFFE4ED0001BE3C /* GLKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C3566EEA1EFFE48F0001BE3C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C3566EF51EFFE4900001BE3C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,8 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				C3566ED91EFFE48F0001BE3C /* Fast Fractal Generator.app */,
-				C3566EED1EFFE48F0001BE3C /* Fast Fractal GeneratorTests.xctest */,
-				C3566EF81EFFE4900001BE3C /* Fast Fractal GeneratorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				C3566EDC1EFFE48F0001BE3C /* AppDelegate.swift */,
+				BAA5AA151F1AC6B9001615DF /* MainViewController.swift */,
 				C3566EE31EFFE48F0001BE3C /* Assets.xcassets */,
 				C3566EE51EFFE48F0001BE3C /* LaunchScreen.storyboard */,
 				C3566EE81EFFE48F0001BE3C /* Info.plist */,
@@ -138,42 +106,6 @@
 			productReference = C3566ED91EFFE48F0001BE3C /* Fast Fractal Generator.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C3566EEC1EFFE48F0001BE3C /* Fast Fractal GeneratorTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C3566F041EFFE4900001BE3C /* Build configuration list for PBXNativeTarget "Fast Fractal GeneratorTests" */;
-			buildPhases = (
-				C3566EE91EFFE48F0001BE3C /* Sources */,
-				C3566EEA1EFFE48F0001BE3C /* Frameworks */,
-				C3566EEB1EFFE48F0001BE3C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C3566EEF1EFFE48F0001BE3C /* PBXTargetDependency */,
-			);
-			name = "Fast Fractal GeneratorTests";
-			productName = "Fast Fractal GeneratorTests";
-			productReference = C3566EED1EFFE48F0001BE3C /* Fast Fractal GeneratorTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		C3566EF71EFFE4900001BE3C /* Fast Fractal GeneratorUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C3566F071EFFE4900001BE3C /* Build configuration list for PBXNativeTarget "Fast Fractal GeneratorUITests" */;
-			buildPhases = (
-				C3566EF41EFFE4900001BE3C /* Sources */,
-				C3566EF51EFFE4900001BE3C /* Frameworks */,
-				C3566EF61EFFE4900001BE3C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C3566EFA1EFFE4900001BE3C /* PBXTargetDependency */,
-			);
-			name = "Fast Fractal GeneratorUITests";
-			productName = "Fast Fractal GeneratorUITests";
-			productReference = C3566EF81EFFE4900001BE3C /* Fast Fractal GeneratorUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -188,18 +120,6 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = R4Q2Y373C8;
 						ProvisioningStyle = Automatic;
-					};
-					C3566EEC1EFFE48F0001BE3C = {
-						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = R4Q2Y373C8;
-						ProvisioningStyle = Automatic;
-						TestTargetID = C3566ED81EFFE48F0001BE3C;
-					};
-					C3566EF71EFFE4900001BE3C = {
-						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = R4Q2Y373C8;
-						ProvisioningStyle = Automatic;
-						TestTargetID = C3566ED81EFFE48F0001BE3C;
 					};
 				};
 			};
@@ -217,8 +137,6 @@
 			projectRoot = "";
 			targets = (
 				C3566ED81EFFE48F0001BE3C /* Fast Fractal Generator */,
-				C3566EEC1EFFE48F0001BE3C /* Fast Fractal GeneratorTests */,
-				C3566EF71EFFE4900001BE3C /* Fast Fractal GeneratorUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -235,20 +153,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C3566EEB1EFFE48F0001BE3C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C3566EF61EFFE4900001BE3C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -256,39 +160,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAA5AA161F1AC6B9001615DF /* MainViewController.swift in Sources */,
 				C3566EDD1EFFE48F0001BE3C /* AppDelegate.swift in Sources */,
 				C3566F101EFFEB360001BE3C /* Fractal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C3566EE91EFFE48F0001BE3C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C3566EF41EFFE4900001BE3C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C3566EEF1EFFE48F0001BE3C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C3566ED81EFFE48F0001BE3C /* Fast Fractal Generator */;
-			targetProxy = C3566EEE1EFFE48F0001BE3C /* PBXContainerItemProxy */;
-		};
-		C3566EFA1EFFE4900001BE3C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C3566ED81EFFE48F0001BE3C /* Fast Fractal Generator */;
-			targetProxy = C3566EF91EFFE4900001BE3C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C3566EE51EFFE48F0001BE3C /* LaunchScreen.storyboard */ = {
@@ -403,6 +281,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R4Q2Y373C8;
 				INFOPLIST_FILE = "Fast Fractal Generator/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shahar.Fast-Fractal-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -416,68 +295,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R4Q2Y373C8;
 				INFOPLIST_FILE = "Fast Fractal Generator/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shahar.Fast-Fractal-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		C3566F051EFFE4900001BE3C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = R4Q2Y373C8;
-				INFOPLIST_FILE = "Fast Fractal GeneratorTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shahar.Fast-Fractal-GeneratorTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fast Fractal Generator.app/Fast Fractal Generator";
-			};
-			name = Debug;
-		};
-		C3566F061EFFE4900001BE3C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = R4Q2Y373C8;
-				INFOPLIST_FILE = "Fast Fractal GeneratorTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shahar.Fast-Fractal-GeneratorTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fast Fractal Generator.app/Fast Fractal Generator";
-			};
-			name = Release;
-		};
-		C3566F081EFFE4900001BE3C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = R4Q2Y373C8;
-				INFOPLIST_FILE = "Fast Fractal GeneratorUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shahar.Fast-Fractal-GeneratorUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "Fast Fractal Generator";
-			};
-			name = Debug;
-		};
-		C3566F091EFFE4900001BE3C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = R4Q2Y373C8;
-				INFOPLIST_FILE = "Fast Fractal GeneratorUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shahar.Fast-Fractal-GeneratorUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "Fast Fractal Generator";
 			};
 			name = Release;
 		};
@@ -498,24 +320,6 @@
 			buildConfigurations = (
 				C3566F021EFFE4900001BE3C /* Debug */,
 				C3566F031EFFE4900001BE3C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C3566F041EFFE4900001BE3C /* Build configuration list for PBXNativeTarget "Fast Fractal GeneratorTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C3566F051EFFE4900001BE3C /* Debug */,
-				C3566F061EFFE4900001BE3C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C3566F071EFFE4900001BE3C /* Build configuration list for PBXNativeTarget "Fast Fractal GeneratorUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C3566F081EFFE4900001BE3C /* Debug */,
-				C3566F091EFFE4900001BE3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
