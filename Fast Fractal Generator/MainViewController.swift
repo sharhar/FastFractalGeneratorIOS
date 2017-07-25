@@ -49,6 +49,9 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
         slider.isContinuous = true
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.addTarget(self, action: #selector(sliderValueDidChange),for: .valueChanged)
+        slider.addTarget(self, action: #selector(sliderStart), for: .touchDown)
+        slider.addTarget(self, action: #selector(sliderEnd), for: .touchUpInside)
+        slider.addTarget(self, action: #selector(sliderEnd), for: .touchUpOutside)
 
         glView.addSubview(slider)
 
@@ -80,18 +83,26 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
 
         frac.setup(size: CGPoint(x: self.view.frame.width, y: self.view.frame.height))
     }
+    
+    func sliderStart(sender: UISlider!) {
+        frac.renderMode = Fractal.RENDER_DOWNSCALE
+    }
+    
+    func sliderEnd(sender: UISlider!) {
+        frac.renderMode = Fractal.RENDER_UPSCALE
+    }
 
     func sliderValueDidChange(sender: UISlider!) {
         label.text = "Iterations: \(Int(sender.value))"
-        //Use sender.value to change the fractal generation.
     }
 
     func buttonIsClicked(sender: UIButton!) {
-        print("Button Clicked")
-        //React to button being clicked.
+        frac.changeColor()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        frac.renderMode = Fractal.RENDER_DOWNSCALE
+        
         let touch: UITouch = touches.first!
         let point: CGPoint = touch.location(in: touch.view)
         let str: String = NSStringFromCGPoint(point)
@@ -106,7 +117,7 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        frac.renderMode = Fractal.RENDER_UPSCALE
     }
 
     func glkView(_: GLKView, drawIn: CGRect) {
