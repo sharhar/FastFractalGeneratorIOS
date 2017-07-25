@@ -162,7 +162,7 @@ class Fractal {
         glUseProgram(shader)
         
         glUniform2f(aspectLoc, aspectX, aspectY)
-        glUniform1f(scaleLoc, 8)
+        glUniform1f(scaleLoc, 4)
         glUniform2f(windowLoc, 0, 0)
         
         glUniform2f(cLoc, 0, 0)

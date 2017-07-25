@@ -82,11 +82,7 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
     }
 
     func sliderValueDidChange(sender: UISlider!) {
-        if Int(sender.value) == 1 {
-            label.text = "Iteration: \(Int(sender.value))"
-        } else {
-            label.text = "Iterations: \(Int(sender.value))"
-        }
+        label.text = "Iterations: \(Int(sender.value))"
         //Use sender.value to change the fractal generation.
     }
 
@@ -94,7 +90,7 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
         print("Button Clicked")
         //React to button being clicked.
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch = touches.first!
         let point: CGPoint = touch.location(in: touch.view)
