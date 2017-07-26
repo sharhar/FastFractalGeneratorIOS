@@ -179,7 +179,7 @@ class Fractal {
         glUniform1i(dpLoc, 0)
         
         glUniform2f(aspectLoc, aspectX, aspectY)
-        glUniform1f(scaleLoc, 1)
+        glUniform1f(scaleLoc, 4)
         glUniform2f(windowLoc, 0, 0)
         
         glUniform2f(scLoc, 1, 0)
