@@ -16,9 +16,11 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
     let context = EAGLContext.init(api: EAGLRenderingAPI.openGLES2)
     var glView: GLKView!
     let controller = GLKViewController.init()
-    let button = UIButton.init(type: UIButtonType.roundedRect)
+    let colorButton = UIButton.init(type: UIButtonType.roundedRect)
+    let uiButton = UIButton.init(type: UIButtonType.roundedRect)
     let slider = UISlider.init()
     let label = UILabel.init()
+    var visibility = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +35,30 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
 
         self.view.addSubview(glView)
 
-        button.setTitle("Change Color", for: UIControlState.normal)
-        button.sizeToFit()
-        button.layer.cornerRadius = 5
-        button.clipsToBounds = true
-        button.backgroundColor = UIColor.white
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(buttonIsClicked), for: .touchUpInside)
+        colorButton.setTitle("Change Color", for: .normal)
+        colorButton.sizeToFit()
+        colorButton.layer.cornerRadius = 5
+        colorButton.clipsToBounds = true
+        colorButton.backgroundColor = UIColor.white
+        colorButton.translatesAutoresizingMaskIntoConstraints = false
+        colorButton.addTarget(self, action: #selector(colorIsClicked), for: .touchUpInside)
 
-        glView.addSubview(button)
+        glView.addSubview(colorButton)
+
+        if visibility {
+            uiButton.setTitle("Hide UI", for: .normal)
+        } else {
+            uiButton.setTitle("Show UI", for: .normal)
+        }
+
+        uiButton.sizeToFit()
+        uiButton.layer.cornerRadius = 5
+        uiButton.clipsToBounds = true
+        uiButton.backgroundColor = UIColor.white
+        uiButton.translatesAutoresizingMaskIntoConstraints = false
+        uiButton.addTarget(self, action: #selector(uiIsClicked), for: .touchUpInside)
+        
+        glView.addSubview(uiButton)
 
         slider.minimumValue = 0
         slider.maximumValue = 1000
@@ -67,21 +84,35 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
         let sliderX = NSLayoutConstraint.init(item: slider, attribute: .centerX, relatedBy: .equal, toItem: glView, attribute: .centerX, multiplier: 1.0, constant: 0)
         let sliderY = NSLayoutConstraint.init(item: slider, attribute: .bottom, relatedBy: .equal, toItem: glView, attribute: .bottom, multiplier: 1.0, constant: -32)
 
-        let buttonHeight = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32)
-        let buttonWidth = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: glView, attribute: .width, multiplier: 0.5, constant: 0)
-        let buttonX = NSLayoutConstraint.init(item: button, attribute: .centerX, relatedBy: .equal, toItem: glView, attribute: .centerX, multiplier: 1.0, constant: 0)
-        let buttonY = NSLayoutConstraint.init(item: button, attribute: .top, relatedBy: .equal, toItem: glView, attribute: .top, multiplier: 1.0, constant: 32)
+        let colorButtonHeight = NSLayoutConstraint.init(item: colorButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32)
+        let colorButtonWidth = NSLayoutConstraint.init(item: colorButton, attribute: .width, relatedBy: .equal, toItem: glView, attribute: .width, multiplier: 0.5, constant: 0)
+        let colorButtonX = NSLayoutConstraint.init(item: colorButton, attribute: .centerX, relatedBy: .equal, toItem: glView, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let colorButtonY = NSLayoutConstraint.init(item: colorButton, attribute: .top, relatedBy: .equal, toItem: glView, attribute: .top, multiplier: 1.0, constant: 96)
+
+        let uiButtonHeight = NSLayoutConstraint.init(item: uiButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 32)
+        let uiButtonWidth = NSLayoutConstraint.init(item: uiButton, attribute: .width, relatedBy: .equal, toItem: glView, attribute: .width, multiplier: 0.5, constant: 0)
+        let uiButtonX = NSLayoutConstraint.init(item: uiButton, attribute: .centerX, relatedBy: .equal, toItem: glView, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let uiButtonY = NSLayoutConstraint.init(item: uiButton, attribute: .top, relatedBy: .equal, toItem: glView, attribute: .top, multiplier: 1.0, constant: 32)
 
         let labelHeight = NSLayoutConstraint.init(item: label, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50)
         let labelWidth = NSLayoutConstraint.init(item: label, attribute: .width, relatedBy: .equal, toItem: glView, attribute: .width, multiplier: 0.75, constant: 0)
         let labelX = NSLayoutConstraint.init(item: label, attribute: .centerX, relatedBy: .equal, toItem: glView, attribute: .centerX, multiplier: 1.0, constant: 0)
         let labelY = NSLayoutConstraint.init(item: label, attribute: .bottom, relatedBy: .equal, toItem: glView, attribute: .bottom, multiplier: 1.0, constant: -4)
 
-        glView.addConstraints([sliderHeight, sliderWidth, sliderX, sliderY, buttonX, buttonY, buttonWidth, buttonHeight, labelHeight, labelWidth, labelX, labelY])
+        glView.addConstraints([sliderX, sliderY, sliderHeight, sliderWidth,
+                               colorButtonX, colorButtonY, colorButtonWidth, colorButtonHeight,
+                               uiButtonX, uiButtonY, uiButtonWidth, uiButtonHeight,
+                               labelX, labelY, labelHeight, labelWidth])
+
+        uiVisibility()
 
         EAGLContext.setCurrent(context)
 
         frac.setup(size: CGPoint(x: self.view.frame.width, y: self.view.frame.height))
+    }
+
+    func colorIsClicked(sender: UIButton!) {
+        frac.changeColor()
     }
     
     func sliderStart(sender: UISlider!) {
@@ -96,8 +127,31 @@ class MainViewController: UIViewController, GLKViewDelegate, GLKViewControllerDe
         label.text = "Iterations: \(Int(sender.value))"
     }
 
-    func buttonIsClicked(sender: UIButton!) {
-        frac.changeColor()
+    func uiIsClicked(sender: UIButton!) {
+        if visibility {
+            uiButton.setTitle("Show UI", for: .normal)
+            visibility = false
+        } else {
+            uiButton.setTitle("Hide UI", for: .normal)
+            visibility = true
+        }
+        uiVisibility()
+    }
+
+    func uiVisibility() {
+        if visibility {
+            UIView.animate(withDuration: 0.25, animations: {
+            self.slider.alpha = 1.0
+            self.colorButton.alpha = 1.0
+            self.label.alpha = 1.0
+            })
+        } else {
+            UIView.animate(withDuration: 0.25, animations: {
+            self.slider.alpha = 0.0
+            self.colorButton.alpha = 0.0
+            self.label.alpha = 0.0
+            })
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
